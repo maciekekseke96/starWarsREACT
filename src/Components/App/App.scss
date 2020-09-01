@@ -1,3 +1,20 @@
-h1 {
-  color: red;
+@import "./../../styles/colors";
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.app {
+  border: 1px solid black;
+  margin-top: 10px;
+  padding: 10px;
+  min-width: 700px;
+  min-height: 700px;
+  display: flex;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $backgroundColor;
 }

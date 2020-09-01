@@ -5,10 +5,19 @@ import MainContent from "./MainContent/MainContent";
 import Footer from "./Footer/Footer";
 
 function App() {
+  const [starWarsMovies, setStarWarsMovies] = useState([]);
+  useEffect(() => {
+    fetch("https://swapi.dev/api/films/")
+      .then((resp) => resp.json())
+      .then((data) => {
+        setStarWarsMovies(data.results);
+      });
+  }, []);
+
   return (
     <div className="app">
       <Header />
-      <MainContent />
+      <MainContent movies={starWarsMovies} />
       <Footer />
     </div>
   );

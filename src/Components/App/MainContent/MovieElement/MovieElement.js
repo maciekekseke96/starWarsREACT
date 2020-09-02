@@ -11,7 +11,7 @@ const MovieElement = (props) => {
         <p className="movieTitle">{props.movie.title}</p>
         <div className="wrapBtn" onClick={() => setIsShown(!isShown)}></div>
       </div>
-      {isShown && <TableElement />}
+      {isShown && <TableElement planets={props.movie.planets} />}
     </>
   );
 };

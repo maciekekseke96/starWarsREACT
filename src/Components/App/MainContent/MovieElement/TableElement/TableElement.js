@@ -27,22 +27,42 @@ const TableElement = (props) => {
               <th>
                 Planet
                 <br /> Name
+                <button></button>
+                <button></button>
               </th>
               <th>
                 Rotation
                 <br /> Period
+                <button></button>
+                <button></button>
               </th>
               <th>
                 Orbital
                 <br /> Period
+                <button></button>
+                <button></button>
               </th>
-              <th>Diameter</th>
-              <th>Climate</th>
+              <th>
+                Diameter
+                <button></button>
+                <button></button>
+              </th>
+              <th>
+                Climate
+                <button></button>
+                <button></button>
+              </th>
               <th>
                 Surface
                 <br /> Water
+                <button></button>
+                <button></button>
               </th>
-              <th>Population</th>
+              <th>
+                Population
+                <button></button>
+                <button></button>
+              </th>
             </tr>
           </thead>
           <tbody>

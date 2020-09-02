@@ -1,5 +1,50 @@
+@import "./../../../../../styles/colors";
+
 .tableElement {
   width: 100%;
   min-height: 100px;
-  border: 1px solid black;
+  border-top: 3px solid rgba(110, 108, 108, 0.2);
+  background-color: white;
+  table {
+    font-size: 12px;
+    width: 100%;
+
+    tr {
+      &:nth-child(even) {
+        background: #ccc;
+      }
+      th,
+      td {
+        text-align: center;
+      }
+      th {
+        color: $fontColor;
+        border-bottom: 1px solid rgba(110, 108, 108, 0.2);
+        position: relative;
+
+        button:nth-of-type(1) {
+          width: 11px;
+          height: 11px;
+          position: absolute;
+          top: 10%;
+          right: 0;
+          background-image: url("./../../../../../assets/upArrow.png");
+          background-position: center;
+          background-size: cover;
+          background-repeat: no-repeat;
+        }
+        button:nth-of-type(2) {
+          width: 11px;
+          height: 11px;
+          position: absolute;
+          bottom: 10%;
+          right: 0;
+          background-image: url("./../../../../../assets/downArrow.png");
+          background-position: center;
+          background-size: cover;
+          background-repeat: no-repeat;
+        }
+      }
+    }
+  }
 }

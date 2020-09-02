@@ -18,7 +18,70 @@ const TableElement = (props) => {
     });
   }, []);
 
-  if (planets.length == planetsAPIs.length) {
+  const sortAsc = (by) => {
+    let toSort = [...planets];
+    let sorted = toSort.sort((a, b) => {
+      if (a[by] < b[by]) {
+        return -1;
+      }
+      if (a[by] > b[by]) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+    setPlanets(sorted);
+  };
+  const sortDesc = (by) => {
+    let toSort = [...planets];
+    let sorted = toSort.sort((a, b) => {
+      if (a[by] < b[by]) {
+        return 1;
+      }
+      if (a[by] > b[by]) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+    setPlanets(sorted);
+  };
+  const sortByNumberAsc = (by) => {
+    let toSort = [...planets];
+    let sorted = toSort.sort((a, b) => {
+      if (a[by] === "unknown") {
+        return 1;
+      } else if (b[by] === "unknown") {
+        return -1;
+      } else if (parseFloat(a[by]) < parseFloat(b[by])) {
+        return -1;
+      } else if (parseFloat(a[by]) > parseFloat(b[by])) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+    setPlanets(sorted);
+  };
+  const sortByNumberDesc = (by) => {
+    let toSort = [...planets];
+    let sorted = toSort.sort((a, b) => {
+      if (a[by] === "unknown") {
+        return 1;
+      } else if (b[by] === "unknown") {
+        return -1;
+      } else if (parseFloat(a[by]) < parseFloat(b[by])) {
+        return 1;
+      } else if (parseFloat(a[by]) > parseFloat(b[by])) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+    setPlanets(sorted);
+  };
+
+  if (planets.length === planetsAPIs.length) {
     return (
       <div className="tableElement">
         <table>
@@ -27,41 +90,53 @@ const TableElement = (props) => {
               <th>
                 Planet
                 <br /> Name
-                <button></button>
-                <button></button>
+                <button onClick={() => sortAsc("name")}></button>
+                <button onClick={() => sortDesc("name")}></button>
               </th>
               <th>
                 Rotation
                 <br /> Period
-                <button></button>
-                <button></button>
+                <button
+                  onClick={() => sortByNumberAsc("rotation_period")}
+                ></button>
+                <button
+                  onClick={() => sortByNumberDesc("rotation_period")}
+                ></button>
               </th>
               <th>
                 Orbital
                 <br /> Period
-                <button></button>
-                <button></button>
+                <button
+                  onClick={() => sortByNumberAsc("orbital_period")}
+                ></button>
+                <button
+                  onClick={() => sortByNumberDesc("orbital_period")}
+                ></button>
               </th>
               <th>
                 Diameter
-                <button></button>
-                <button></button>
+                <button onClick={() => sortByNumberAsc("diameter")}></button>
+                <button onClick={() => sortByNumberDesc("diameter")}></button>
               </th>
               <th>
                 Climate
-                <button></button>
-                <button></button>
+                <button onClick={() => sortAsc("climate")}></button>
+                <button onClick={() => sortDesc("climate")}></button>
               </th>
               <th>
                 Surface
                 <br /> Water
-                <button></button>
-                <button></button>
+                <button
+                  onClick={() => sortByNumberAsc("surface_water")}
+                ></button>
+                <button
+                  onClick={() => sortByNumberDesc("surface_water")}
+                ></button>
               </th>
               <th>
                 Population
-                <button></button>
-                <button></button>
+                <button onClick={() => sortByNumberAsc("population")}></button>
+                <button onClick={() => sortByNumberDesc("population")}></button>
               </th>
             </tr>
           </thead>

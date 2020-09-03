@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import "./MovieForm.scss";
 
-const MovieFormContainer = () => {
+const MovieFormContainer = (props) => {
   return (
     <div className="movieFormContainer">
-      <MovieForm />
+      <MovieForm setStarWarsMovies={props.setStarWarsMovies} />
     </div>
   );
 };
 
-const MovieForm = () => {
+const MovieForm = (props) => {
   const [movieTitle, setMovieTitle] = useState("");
   const [planetSearcher, setPlanetSearcher] = useState("");
   const [planetsFound, setPlanetsFound] = useState([]);
@@ -30,6 +30,25 @@ const MovieForm = () => {
         return i !== index;
       })
     );
+  };
+
+  const addMovie = (event) => {
+    event.preventDefault();
+    let planetsAPIs = [];
+    planetsChoosen.forEach((planet) => {
+      planetsAPIs.push(planet.url);
+    });
+    const filmObject = {
+      title: movieTitle,
+      planets: planetsAPIs,
+    };
+    props.setStarWarsMovies((prevstate) => {
+      return [...prevstate, filmObject];
+    });
+    setPlanetsChoosen([]);
+    setPlanetsFound([]);
+    setMovieTitle("");
+    setPlanetSearcher("");
   };
   return (
     <form className="movieForm">
@@ -55,7 +74,9 @@ const MovieForm = () => {
         value={movieTitle}
         placeholder="Type the title of your movie"
       ></input>
-      {PlanetsChoosen.length > 0 && <PlanetsChoosen deletePlanet={deletePlanet} planets={planetsChoosen} />}
+      {PlanetsChoosen.length > 0 && (
+        <PlanetsChoosen deletePlanet={deletePlanet} planets={planetsChoosen} />
+      )}
       <label className="specific">
         Add planet
         {planetsFound.length > 0 && (
@@ -79,7 +100,7 @@ const MovieForm = () => {
         type="text"
         placeholder="Let's search for your planet"
       ></input>
-      <button>Add Movie</button>
+      <button onClick={(event) => addMovie(event)}>Add Movie</button>
     </form>
   );
 };

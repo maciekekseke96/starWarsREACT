@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import MovieFormContainer from "./MovieForm/MovieForm";
 import "./Footer.scss";
 
-const Footer = () => {
+const Footer = (props) => {
   const [isShown, setIsShown] = useState(false);
   return (
     <>
@@ -10,7 +10,9 @@ const Footer = () => {
         <p>Add Movie</p>
         <div className="wrapBtn" onClick={() => setIsShown(!isShown)}></div>
       </div>
-      {isShown && <MovieFormContainer />}
+      {isShown && (
+        <MovieFormContainer setStarWarsMovies={props.setStarWarsMovies} />
+      )}
     </>
   );
 };

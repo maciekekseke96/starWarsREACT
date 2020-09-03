@@ -18,7 +18,7 @@ function App() {
     <div className="app">
       <Header />
       <MainContent movies={starWarsMovies} />
-      <Footer />
+      <Footer setStarWarsMovies={setStarWarsMovies} />
     </div>
   );
 }

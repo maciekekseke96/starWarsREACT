@@ -1,4 +1,5 @@
 @import "./../../../../../styles/colors";
+@import "./../../../../../styles/fonts";
 
 .tableElement {
   width: 100%;
@@ -8,6 +9,7 @@
   table {
     font-size: 12px;
     width: 100%;
+    font-family: "Ubuntu", sans-serif;
 
     tr {
       &:nth-child(even) {
@@ -16,6 +18,8 @@
       th,
       td {
         text-align: center;
+        font-weight: 300;
+        width: calc(100% / 7);
       }
       th {
         color: $fontColor;

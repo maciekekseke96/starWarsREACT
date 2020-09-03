@@ -13,7 +13,24 @@ const MovieForm = () => {
   const [movieTitle, setMovieTitle] = useState("");
   const [planetSearcher, setPlanetSearcher] = useState("");
   const [planetsFound, setPlanetsFound] = useState([]);
+  const [planetsChoosen, setPlanetsChoosen] = useState([]);
   const [titleError, setTitleError] = useState(false);
+
+  const choosePlanet = (planet) => {
+    setPlanetsChoosen((prevstate) => {
+      return [...prevstate, planet];
+    });
+    setPlanetSearcher("");
+    setPlanetsFound([]);
+  };
+
+  const deletePlanet = (index) => {
+    setPlanetsChoosen(
+      planetsChoosen.filter((planet, i) => {
+        return i !== index;
+      })
+    );
+  };
   return (
     <form className="movieForm">
       <label className="specific">
@@ -38,9 +55,12 @@ const MovieForm = () => {
         value={movieTitle}
         placeholder="Type the title of your movie"
       ></input>
+      {PlanetsChoosen.length > 0 && <PlanetsChoosen deletePlanet={deletePlanet} planets={planetsChoosen} />}
       <label className="specific">
         Add planet
-        {planetsFound.length > 0 && <PlanetsFound planets={planetsFound} />}
+        {planetsFound.length > 0 && (
+          <PlanetsFound choosePlanet={choosePlanet} planets={planetsFound} />
+        )}
       </label>
       <input
         value={planetSearcher}
@@ -64,12 +84,31 @@ const MovieForm = () => {
   );
 };
 
+const PlanetsChoosen = (props) => {
+  return (
+    <div className="planetsChoosen">
+      {props.planets.map((planet, index) => {
+        return (
+          <div key={index} className="planet">
+            {planet.name}
+            <div onClick={() => props.deletePlanet(index)}>X</div>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
 const PlanetsFound = (props) => {
   return (
     <div className="planetsFound">
       {props.planets.map((planet, index) => {
         return (
-          <div key={index} className="planet">
+          <div
+            onClick={() => props.choosePlanet(planet)}
+            key={index}
+            className="planet"
+          >
             {planet.name}
           </div>
         );

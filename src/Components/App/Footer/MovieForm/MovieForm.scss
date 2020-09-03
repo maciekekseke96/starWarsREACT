@@ -44,6 +44,21 @@
         top: 50px;
         padding: 5px;
       }
+      .planetsFound {
+        position: absolute;
+        width: 100%;
+        top: 50px;
+        border: 1px solid black;
+        z-index: 1;
+        .planet {
+          background-color: white;
+          color: black;
+          &:hover {
+            background-color: rgb(168, 196, 247);
+            cursor: pointer;
+          }
+        }
+      }
     }
     button {
       position: absolute;

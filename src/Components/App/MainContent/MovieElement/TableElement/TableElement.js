@@ -3,7 +3,7 @@ import LoadingScreen from "./LoadingScreen/LoadingScreen";
 import "./TableElement.scss";
 
 const TableElement = (props) => {
-  const [planetsAPIs, setPlanetsAPIs] = useState(props.planets);
+  const [planetsAPIs] = useState(props.planets);
   const [planets, setPlanets] = useState([]);
 
   useEffect(() => {

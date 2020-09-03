@@ -11,6 +11,8 @@ const MovieFormContainer = () => {
 
 const MovieForm = () => {
   const [movieTitle, setMovieTitle] = useState("");
+  const [planetSearcher, setPlanetSearcher] = useState("");
+  const [planetsFound, setPlanetsFound] = useState([]);
   const [titleError, setTitleError] = useState(false);
   return (
     <form className="movieForm">
@@ -36,10 +38,43 @@ const MovieForm = () => {
         value={movieTitle}
         placeholder="Type the title of your movie"
       ></input>
-      <label>Add planet</label>
-      <input type="text" placeholder="Let's search for your planet"></input>
+      <label className="specific">
+        Add planet
+        {planetsFound.length > 0 && <PlanetsFound planets={planetsFound} />}
+      </label>
+      <input
+        value={planetSearcher}
+        onChange={(event) => {
+          setPlanetSearcher(event.target.value);
+        }}
+        onKeyUp={(event) => {
+          if (event.target.value.length > 0) {
+            fetch(`https://swapi.dev/api/planets/?search=${event.target.value}`)
+              .then((resp) => resp.json())
+              .then((data) => setPlanetsFound(data.results));
+          } else {
+            setPlanetsFound([]);
+          }
+        }}
+        type="text"
+        placeholder="Let's search for your planet"
+      ></input>
       <button>Add Movie</button>
     </form>
+  );
+};
+
+const PlanetsFound = (props) => {
+  return (
+    <div className="planetsFound">
+      {props.planets.map((planet, index) => {
+        return (
+          <div key={index} className="planet">
+            {planet.name}
+          </div>
+        );
+      })}
+    </div>
   );
 };
 

@@ -1,0 +1,64 @@
+@import "./../../../../styles/colors";
+@import "./../../../../styles/fonts";
+
+.movieFormContainer {
+  width: 90%;
+  background-color: white;
+  border-top: 3px solid rgba(110, 108, 108, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .movieForm {
+    width: 80%;
+    padding: 30px 50px 30px 50px;
+    font-family: "Ubuntu", sans-serif;
+    position: relative;
+    label,
+    input {
+      display: block;
+      border: none;
+    }
+    input {
+      width: 100%;
+      margin-bottom: 40px;
+      font-size: 18px;
+      border-bottom: 1px solid $footerFontColor;
+      &:focus {
+        background-color: #fdffe2;
+      }
+    }
+    label {
+      font-weight: 300px;
+      color: $footerFontColor;
+      font-size: 14px;
+      margin-bottom: 10px;
+      width: 100%;
+    }
+    label.specific {
+      position: relative;
+      .error {
+        position: absolute;
+        width: 100%;
+        color: red;
+        border: 1px solid red;
+        top: 50px;
+        padding: 5px;
+      }
+    }
+    button {
+      position: absolute;
+      right: 50px;
+      bottom: 25px;
+      width: 120px;
+      height: 40px;
+      font-family: "Ubuntu", sans-serif;
+      background-color: rgb(212, 206, 206);
+      color: white;
+      border: none;
+      border-radius: 10%;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

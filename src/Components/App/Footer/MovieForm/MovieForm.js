@@ -34,22 +34,64 @@ const MovieForm = (props) => {
 
   const addMovie = (event) => {
     event.preventDefault();
-    let planetsAPIs = [];
-    planetsChoosen.forEach((planet) => {
-      planetsAPIs.push(planet.url);
-    });
-    const filmObject = {
-      title: movieTitle,
-      planets: planetsAPIs,
-    };
-    props.setStarWarsMovies((prevstate) => {
-      return [...prevstate, filmObject];
-    });
-    setPlanetsChoosen([]);
-    setPlanetsFound([]);
-    setMovieTitle("");
-    setPlanetSearcher("");
+    if (
+      titleError === false &&
+      planetsChoosen.length > 0 &&
+      movieTitle.length > 2
+    ) {
+      let planetsAPIs = [];
+      planetsChoosen.forEach((planet) => {
+        planetsAPIs.push(planet.url);
+      });
+      const filmObject = {
+        title: movieTitle,
+        planets: planetsAPIs,
+      };
+      props.setStarWarsMovies((prevstate) => {
+        return [...prevstate, filmObject];
+      });
+      setPlanetsChoosen([]);
+      setPlanetsFound([]);
+      setMovieTitle("");
+      setPlanetSearcher("");
+    } else {
+      alert(
+        "Let's check your title (at least 3 characters) or choose some planets!"
+      );
+    }
   };
+  let btnStyles = {};
+  if (
+    titleError === false &&
+    planetsChoosen.length > 0 &&
+    movieTitle.length > 2
+  ) {
+    btnStyles = {
+      position: "absolute",
+      right: "50px",
+      bottom: "25px",
+      width: "120px",
+      height: "40px",
+      fontFamily: '"Ubuntu", sans-serif',
+      backgroundColor: "#1BA1BE",
+      color: "white",
+      border: "none",
+      borderRadius: "10%",
+    };
+  } else {
+    btnStyles = {
+      position: "absolute",
+      right: "50px",
+      bottom: "25px",
+      width: "120px",
+      height: "40px",
+      fontFamily: '"Ubuntu", sans-serif',
+      backgroundColor: "rgb(212, 206, 206)",
+      color: "white",
+      border: "none",
+      borderRadius: "10%",
+    };
+  }
   return (
     <form className="movieForm">
       <label className="specific">
@@ -100,7 +142,9 @@ const MovieForm = (props) => {
         type="text"
         placeholder="Let's search for your planet"
       ></input>
-      <button onClick={(event) => addMovie(event)}>Add Movie</button>
+      <button style={btnStyles} onClick={(event) => addMovie(event)}>
+        Add Movie
+      </button>
     </form>
   );
 };
@@ -141,7 +185,8 @@ const PlanetsFound = (props) => {
 const ErrorHandler = () => {
   return (
     <div className="error">
-      Movie title name must start with a capital letter.
+      Movie title name must start with a capital letter and be at least 3
+      characters long.
     </div>
   );
 };

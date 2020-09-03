@@ -18,7 +18,11 @@ function App() {
     <div className="app">
       <Header />
       <MainContent movies={starWarsMovies} />
+      <div class="slicer"></div>
       <Footer setStarWarsMovies={setStarWarsMovies} />
+      <div class="copyright">
+        <p>COPYRIGHT &copy; 2020 MIRUMEE SOFTWARE</p>
+      </div>
     </div>
   );
 }

@@ -80,16 +80,6 @@
       }
     }
     button {
-      position: absolute;
-      right: 50px;
-      bottom: 25px;
-      width: 120px;
-      height: 40px;
-      font-family: "Ubuntu", sans-serif;
-      background-color: rgb(212, 206, 206);
-      color: white;
-      border: none;
-      border-radius: 10%;
       &:hover {
         cursor: pointer;
       }

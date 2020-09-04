@@ -60,36 +60,30 @@ const MovieForm = (props) => {
       );
     }
   };
-  let btnStyles = {};
+  let btnStyles = {
+    position: "absolute",
+    right: "50px",
+    bottom: "25px",
+    width: "120px",
+    height: "40px",
+    fontFamily: '"Ubuntu", sans-serif',
+    color: "white",
+    border: "none",
+    borderRadius: "10%",
+  };
   if (
     titleError === false &&
     planetsChoosen.length > 0 &&
     movieTitle.length > 2
   ) {
     btnStyles = {
-      position: "absolute",
-      right: "50px",
-      bottom: "25px",
-      width: "120px",
-      height: "40px",
-      fontFamily: '"Ubuntu", sans-serif',
+      ...btnStyles,
       backgroundColor: "#1BA1BE",
-      color: "white",
-      border: "none",
-      borderRadius: "10%",
     };
   } else {
     btnStyles = {
-      position: "absolute",
-      right: "50px",
-      bottom: "25px",
-      width: "120px",
-      height: "40px",
-      fontFamily: '"Ubuntu", sans-serif',
+      ...btnStyles,
       backgroundColor: "rgb(212, 206, 206)",
-      color: "white",
-      border: "none",
-      borderRadius: "10%",
     };
   }
   return (
@@ -185,8 +179,7 @@ const PlanetsFound = (props) => {
 const ErrorHandler = () => {
   return (
     <div className="error">
-      Movie title name must start with a capital letter and be at least 3
-      characters long.
+      Movie title name must start with a capital letter.
     </div>
   );
 };
